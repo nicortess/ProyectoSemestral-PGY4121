@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="success">
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Nivel de educación</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-radio-group [(ngModel)]="nivelEducacion">
+        <ion-item>
+          <ion-label>Enseñanza Basica</ion-label>
+          <ion-radio value="Basica" slot="start"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Enseñanza Media</ion-label>
+          <ion-radio value="Media" slot="start"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Registro</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" [(ngModel)]="nombre" #nombreInput></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input type="text" [(ngModel)]="apellido" #apellidoInput></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Fecha Nacimiento</ion-label>
+        <ion-datetime [(ngModel)]="fecha" #fechaInput ></ion-datetime>
+      </ion-item>
+      <ion-row class="ion-justify-content-between">
+        <ion-button size="full" (click)="limpiarCampos()" class="ion-margin-end">Limpiar Campos</ion-button>
+        <ion-button size="full" (click)="registrarUsuario()">Registrar</ion-button>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
