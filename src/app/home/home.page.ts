@@ -7,17 +7,34 @@ import { BarcodeScanner, ScanResult } from 'capacitor-barcode-scanner';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage{
+export class HomePage implements OnInit{
   isSupported = false;
   usuarios: any[] = [];
   isTitleVisible = false;
-  resultadoScan:any='';
-
+  resultadoScan:any='';  
   constructor(
     private datosService: DatosCompartidosService,
 
   ) {
     this.usuarios = datosService.obtenerUsuarios();
+  }
+
+  ngOnInit() {
+    this.cargarDatosGuardados(); // Cargar datos previamente guardados al cargar la página
+  }
+
+  cargarDatosGuardados() {
+    const datosRegistro = localStorage.getItem('datosRegistro');
+
+    if (datosRegistro) {
+      const usuario = JSON.parse(datosRegistro);
+      this.usuarios.push(usuario);
+    }
+  }
+
+  limpiarLista() {
+    this.usuarios = []; // Limpia la lista en la aplicación
+    localStorage.removeItem('datosRegistro'); // Elimina los datos de localStorage si es necesario
   }
 
   async scan() {
@@ -34,10 +51,6 @@ export class HomePage{
     }
   }
 
-  limpiarLista() {
-    this.datosService.limpiarUsuarios();
-    this.usuarios = [];
-  }
   @HostListener('ionScroll', ['$event.target'])
   onScroll(event: any) {
     const scrollTop = event.scrollTop;

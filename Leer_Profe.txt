@@ -1,5 +1,0 @@
-Ejecutar para instalar plugin
-
-npm i https://github.com/RuedaDeRepuesto/capacitor-barcode-scanner
-
-Barcode scanner Plugins

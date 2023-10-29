@@ -37,6 +37,16 @@
         <ion-input type="text" [(ngModel)]="apellido" #apellidoInput></ion-input>
       </ion-item>
       <ion-item>
+        <ion-select (ionChange)="cargarComuna()" [(ngModel)]="regionSel"  label="Region" placeholder="Seleccione">
+          <ion-select-option *ngFor="let i of regiones" [value]="i.id">{{i.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-select [disabled]="seleccionComuna" [(ngModel)]="regionSel"  label="Comuna" placeholder="Seleccione">
+          <ion-select-option *ngFor="let i of comunas" [value]="i.id">{{i.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
         <ion-label position="floating">Fecha Nacimiento</ion-label>
         <ion-datetime [(ngModel)]="fecha" #fechaInput ></ion-datetime>
       </ion-item>
